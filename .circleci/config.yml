@@ -1,0 +1,66 @@
+version: 2.1
+
+jobs:
+  build-and-test:
+    machine: true # Use a dedicated, clean VM
+    steps:
+      - checkout # Pull down code from your GitHub repository
+
+      - run:
+          name: Install PDM # Install Python's dependency manager PDM
+          command: |
+            curl -sSL https://raw.githubusercontent.com/pdm-project/pdm/main/install-pdm.py | python3 -
+            echo 'export PATH="$HOME/.local/bin:$PATH"' >> $BASH_ENV  # Add PDM to PATH
+            source $BASH_ENV  # Load the updated PATH
+
+      - run:
+          name: Debugging PATH and PDM installation # Output the current PATH and pdm version for debugging
+          command: |
+            echo "Current PATH: $PATH"
+            which pdm || echo "pdm not found in PATH"
+            pdm --version || echo "pdm command not executable"
+
+      - restore_cache: # Restore saved dependencies cache if available
+          keys:
+            - v1-dependencies-{{ checksum "pdm.lock" }}
+
+      - run:
+          name: Install Dependencies # Install project dependencies using PDM
+          command: |
+            source $BASH_ENV
+            pdm install
+
+      - save_cache: # Cache the installed dependencies to speed up future builds
+          paths:
+            - ~/.pdm
+          key: v1-dependencies-{{ checksum "pdm.lock" }}
+
+      - run:
+          name: Check Code Formatting with Black # Check code formatting using Black
+          command: |
+            source $BASH_ENV
+            pdm run black --check src/ tests/
+
+      - run:
+          name: Static Analysis with Mypy # Perform static analysis using Mypy
+          command: |
+            source $BASH_ENV
+            pdm run mypy src/
+
+      - run:
+          name: Linting with Ruff # Lint code using Ruff
+          command: |
+            source $BASH_ENV
+            pdm run ruff src/ tests/
+
+      - run:
+          name: Run Unit Tests with Pytest # Run unit tests using Pytest
+          command: |
+            source $BASH_ENV
+            pdm run pytest
+
+workflows:
+  version: 2
+  build-and-test-workflow:
+    jobs:
+      - build-and-test

@@ -1,0 +1,49 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      name: Check out repository code
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install PDM
+      run: |
+        curl -sSL https://raw.githubusercontent.com/pdm-project/pdm/main/install-pdm.py | python3 -
+        echo 'export PATH="$HOME/.local/bin:$PATH"' >> $GITHUB_ENV
+
+    - name: Cache PDM dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.pdm
+        key: ${{ runner.os }}-pdm-${{ hashFiles('**/pdm.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-pdm-
+
+    - name: Install Dependencies
+      run: |
+        pdm install
+
+    - name: Check Code Formatting with Black
+      run: |
+        pdm run black --check src/ tests/
+
+    - name: Static Analysis with Mypy
+      run: |
+        pdm run mypy src/
+
+    - name: Linting with Ruff
+      run: |
+        pdm run ruff src/ tests/
+
+    - name: Run Unit Tests with Pytest
+      run: |
+        pdm run pytest
