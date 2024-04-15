@@ -11,9 +11,9 @@ Frontend HTML templates can be found in `templates/` folder, such as `index.html
 Static elements and styles can be found in `static/` folder, such as `style.css`.
 
 ### Running Flask app
-Change directory to `src` folder:
+Change directory to `src/open_source_python_template` folder:
 
-    cd src
+    cd src/open_source_python_template
 
 Run Flask app via PDM:
 
