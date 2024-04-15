@@ -1,3 +1,28 @@
+# Google Suite Tasks Dashboard
+The objective of the Google Suite Tasks Dashboard is to provide Google users with a centralized platform to efficiently manage tasks across the Google Task and Google Docs applications. By creating this solution, users can easily access and track their tasks in one location.
+
+## Development Setup
+
+### Project structure
+Entry point of the Flask application is `__init__.py`.
+
+Frontend HTML templates can be found in `templates/` folder, such as `index.html`.
+
+Static elements and styles can be found in `static/` folder, such as `style.css`.
+
+### Running Flask app
+Change directory to `src` folder:
+
+    cd src
+
+Run Flask app via PDM:
+
+    pdm run python __init__.py
+
+Open browser and go to the following host address:
+
+    http://127.0.0.1:5000
+
 # Open Source Python Template
 
 This is an advanced template for designing and developing Python projects with CI/CD. This template serves as a foundation and includes features for build management, unit testing, continuous integration, static analysis, code style adherence, and component specification.
