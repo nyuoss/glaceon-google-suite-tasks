@@ -25,9 +25,10 @@ Open browser and go to the following host address:
 
 ### Running Google Apps Script
 1. Open a Google Docs document, click on Extensions -> Apps Script. A new Apps Script will be created.
-2. Copy and paste the code in `extractTasks.js` into `Code.gs` file in the Apps Script editor.
-3. Run the script by clicking "Run".
-4. When the script finishes execution, the comments with tasks assigned to the current use will be stored in a newly created Google Sheet.
+2. From the left panel, select `Services` and add `Drive API`.
+3. Copy and paste the code in `extractTasks.js` into `Code.gs` file in the Apps Script editor.
+4. Run the script by clicking "Run".
+5. When the script finishes execution, the comments with tasks assigned to the current use will be stored in a newly created Google Sheet.
 
 # Open Source Python Template
 
