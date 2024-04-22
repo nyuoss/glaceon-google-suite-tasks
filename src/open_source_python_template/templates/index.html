@@ -8,6 +8,7 @@
 </head>
 <body>
     <div class="dashboard">
+        <!-- Side Navigation -->
         <div class="sidenav">
             <h1>Hi, <span class="username-placeholder">username</span>!</h1>
             <div class="search-bar">
@@ -20,36 +21,40 @@
                 <div class="category"><span>✔ Completed</span></div>
             </div>
         </div>
+        <!-- Task column -->
         <div class="taskcolumn">
             <h2>Starred</h2>
+            
             <div class="task-item">
                 <input type="checkbox" id="task1">
                 <label for="task1">Task Item 1</label>
-                <div class="task-meta">
-                    <span class="task-description">This is the task description.</span>
-                    <span class="due-date">Today</span>
+                <button class="dropdown-toggle" onclick="toggleDropdown('task-detail-1')">▼</button>
+                <div class="task-detail" id="task-detail-1">
+                    <p>More details about Task Item 1. Here you can place any additional information needed, such as descriptions, comments, or attachments.</p>
                 </div>
             </div>
 
             <div class="task-item">
                 <input type="checkbox" id="task1">
                 <label for="task1">Task Item 2</label>
-                <div class="task-meta">
-                    <span class="task-description">This is the task description.</span>
-                    <span class="due-date">Today</span>
+                <button class="dropdown-toggle" onclick="toggleDropdown('task-detail-2')">▼</button>
+                <div class="task-detail" id="task-detail-2">
+                    <p>More details about Task Item 2. Here you can place any additional information needed, such as descriptions, comments, or attachments.</p>
                 </div>
             </div>
 
             <div class="task-item">
                 <input type="checkbox" id="task1">
                 <label for="task1">Task Item 3</label>
-                <div class="task-meta">
-                    <span class="task-description">This is the task description.</span>
-                    <span class="due-date">Date</span>
+                <button class="dropdown-toggle" onclick="toggleDropdown('task-detail-3')">▼</button>
+                <div class="task-detail" id="task-detail-3">
+                    <p>More details about Task Item 3. Here you can place any additional information needed, such as descriptions, comments, or attachments.</p>
                 </div>
             </div>
             <!-- Repeat for more tasks -->
         </div>
     </div> 
+
+    <script src="../javascripts/script.js" defer></script>
 </body>
 </html>
