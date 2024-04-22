@@ -102,3 +102,27 @@ body {
   font-size: 12px;
   margin-top: 5px;
 }
+
+/* Dropdown toggle button */
+.dropdown-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+/* Task details dropdown */
+.task-detail {
+  display: none;
+  background-color: #f6f8fa;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Display task detail when it's set to show */
+.task-detail.show {
+  display: block;
+}
