@@ -2,14 +2,18 @@ from psycopg2 import pool
 from db_config import DBConfig
 from datetime import datetime, timezone
 
+
 class Database:
 
-    connection_pool = pool.ThreadedConnectionPool(1, 20,
-                                                  host=DBConfig.DATABASE_HOST,
-                                                  dbname=DBConfig.DATABASE_NAME,
-                                                  user=DBConfig.DATABASE_USER,
-                                                  password=DBConfig.DATABASE_PASSWORD,
-                                                  port=DBConfig.DATABASE_PORT)
+    connection_pool = pool.ThreadedConnectionPool(
+        1,
+        20,
+        host=DBConfig.DATABASE_HOST,
+        dbname=DBConfig.DATABASE_NAME,
+        user=DBConfig.DATABASE_USER,
+        password=DBConfig.DATABASE_PASSWORD,
+        port=DBConfig.DATABASE_PORT,
+    )
 
     def __init__(self):
         """Initialize the database connection from the connection pool."""
@@ -45,16 +49,29 @@ class Database:
             self.connection_pool.putconn(self.conn, close=True)
             self.conn = None
 
-
-    def insert_comment_task(self, assignee, assigner, content, quoted_file_content, created_time, source_document_url):
+    def insert_comment_task(
+        self,
+        assignee,
+        assigner,
+        content,
+        quoted_file_content,
+        created_time,
+        source_document_url,
+    ):
         """Insert a new comment with assigned task into the database."""
         query = """
         INSERT INTO comments_with_assigned_tasks (assignee, assigner, content, quoted_file_content, created_time, source_document_url)
         VALUES (%s, %s, %s, %s, %s, %s)
         """
-        params = (assignee, assigner, content, quoted_file_content, created_time, source_document_url)
+        params = (
+            assignee,
+            assigner,
+            content,
+            quoted_file_content,
+            created_time,
+            source_document_url,
+        )
         self.insert_data(query, params)
-
 
 
 # test ...
@@ -63,7 +80,9 @@ if __name__ == "__main__":
     try:
         now = datetime.now(timezone.utc)
         # INSERT:
-        db.insert_comment_task("test1","test2","test_content","test",now,"http://example.com")
+        db.insert_comment_task(
+            "test1", "test2", "test_content", "test", now, "http://example.com"
+        )
         # Example of fetching data
         fetch_query = "SELECT * FROM comments_with_assigned_tasks"
         data = db.fetch_data(fetch_query)
