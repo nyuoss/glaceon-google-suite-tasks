@@ -7,3 +7,5 @@ CREATE TABLE comments_with_assigned_tasks (
     created_time TIMESTAMPTZ NOT NULL,
     source_document_url TEXT NOT NULL
 );
+
+

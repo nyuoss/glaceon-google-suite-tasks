@@ -1,0 +1,8 @@
+# Connect to AWS RDS through SSH
+
+```bash
+psql -h opensource-db.chwy4eqkclzc.us-east-1.rds.amazonaws.com -p 5432 -U postgres -d task-db
+```
+
+Please connect Fan(fy2187@nyu.edu) for database password
+
