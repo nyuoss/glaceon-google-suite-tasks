@@ -169,4 +169,4 @@ cython_debug/
 .vscode/
 
 # ignore config file
-*db_config.py
+# *db_config.py
