@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:456ca32a32ef505315e78eba1754826200f5ffde90adb83c4c9baf691dd04763"
+content_hash = "sha256:23e1cd1f21246c6eb8b67505f5ec6a3fb6317b38745b47405f0bb8080cd71208"
 
 [[package]]
 name = "black"
@@ -358,6 +358,17 @@ files = [
     {file = "ruff-0.2.1-py3-none-win_amd64.whl", hash = "sha256:e3affdcbc2afb6f5bd0eb3130139ceedc5e3f28d206fe49f63073cb9e65988e0"},
     {file = "ruff-0.2.1-py3-none-win_arm64.whl", hash = "sha256:efababa8e12330aa94a53e90a81eb6e2d55f348bc2e71adbf17d9cad23c03ee6"},
     {file = "ruff-0.2.1.tar.gz", hash = "sha256:3b42b5d8677cd0c72b99fcaf068ffc62abb5a19e71b4a3b9cfa50658a0af02f1"},
+]
+
+[[package]]
+name = "types-psycopg2"
+version = "2.9.21.20240417"
+requires_python = ">=3.8"
+summary = "Typing stubs for psycopg2"
+groups = ["dev"]
+files = [
+    {file = "types-psycopg2-2.9.21.20240417.tar.gz", hash = "sha256:05db256f4a459fb21a426b8e7fca0656c3539105ff0208eaf6bdaf406a387087"},
+    {file = "types_psycopg2-2.9.21.20240417-py3-none-any.whl", hash = "sha256:644d6644d64ebbe37203229b00771012fb3b3bddd507a129a2e136485990e4f8"},
 ]
 
 [[package]]
