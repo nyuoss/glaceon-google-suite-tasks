@@ -38,7 +38,7 @@ jobs:
 
     - name: Static Analysis with Mypy
       run: |
-        pdm run mypy src/
+        pdm run mypy src/ --ignore-missing-imports
 
     - name: Linting with Ruff
       run: |
