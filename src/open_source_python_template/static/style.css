@@ -1,7 +1,6 @@
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  box-sizing: border-box;
   background-color: #eceff1;
   color: #333;
 }
@@ -12,7 +11,7 @@ body {
 }
 
 .sidenav {
-  width: 500px;
+  width: 300px;
   background-color: #488dcb;
   color: #fff;
   padding: 20px;
@@ -22,7 +21,6 @@ body {
 .sidenav h1 {
   margin-top: 0;
   font-size: 24px;
-  color: white;
 }
 
 .username-placeholder {
@@ -86,61 +84,72 @@ ul {
 
 .taskcolumn h2 {
   margin-top: 0;
+  color: #333;
+  font-size: 1.5rem;
 }
 
 .task-item {
   background-color: #fff;
-  padding: 20px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   border-radius: 5px;
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 10px;
+}
+
+.task-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
-.task-item label {
-  flex-grow: 1;
-  margin-left: 10px;
+.task-info input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 5px;
+  outline: none;
+  margin-left: auto;
+}
+
+.task-detail {
+  display: none;
+  background-color: #f6f8fa;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.task-detail.show {
+  display: block;
 }
 
 .task-meta {
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
 }
 
-.task-meta .task-description {
-  display: block;
+.task-description {
   color: #757575;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .due-date {
   background-color: #c8e6c9;
   border-radius: 5px;
   padding: 5px 10px;
-  display: inline-block;
-  font-size: 12px;
-  margin-top: 5px;
-}
-
-/* Dropdown toggle button */
-.dropdown-toggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0 10px;
-  font-size: 14px;
-}
-
-/* Task details dropdown */
-.task-detail {
-  display: none;
-  background-color: #f6f8fa;
-  padding: 10px;
-  border-radius: 5px;
-  margin-top: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-/* Display task detail when it's set to show */
-.task-detail.show {
-  display: block;
+  font-size: 0.75rem;
 }
