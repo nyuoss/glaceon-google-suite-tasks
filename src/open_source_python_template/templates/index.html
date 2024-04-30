@@ -12,14 +12,14 @@
         <div class="sidenav">
             <h1>Hi, <span class="username-placeholder">username</span>!</h1>
             <div class="search-bar">
-                <input type="search" placeholder="Search...">
+                <input type="search" placeholder="Search..." id="search-tasklists" onkeyup="search_task(this.id)">
             </div>
-            <div class="task-categories">
-                <div class="category starred active"><span>★ Starred</span></div>
-                <div class="category"><span>⚙ OSPSD class</span></div>
-                <div class="category"><span>🛒 Groceries</span></div>
-                <div class="category"><span>✔ Completed</span></div>
-            </div>
+              <ul id='task-categories'>
+                <li class="category starred active">★ Starred</li>
+                <li class="category">⚙ OSPSD class</li>
+                <li class="category">🛒 Groceries</li>
+                <li class="category">✔ Completed</li>
+              </ul>
         </div>
         <!-- Task column -->
         <div class="taskcolumn">
