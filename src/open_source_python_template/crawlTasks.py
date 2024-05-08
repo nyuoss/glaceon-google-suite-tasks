@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
 import os.path
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
