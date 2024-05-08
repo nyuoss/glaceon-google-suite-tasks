@@ -11,7 +11,8 @@ app = Flask(__name__)
 # If modifying these scopes, delete the file token.json.
 SCOPES = ["https://www.googleapis.com/auth/tasks.readonly"]
 
-@app.route('/get-tasks', methods=['GET'])
+
+@app.route("/get-tasks", methods=["GET"])
 def get_tasks():
     """Endpoint to get tasks from Google Tasks API and return them as JSON."""
     creds = None
@@ -22,7 +23,7 @@ def get_tasks():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                "credentials.json", SCOPES
+                "src/open_source_python_template/credential.json", SCOPES
             )
             creds = flow.run_local_server(port=0)
             with open("token.json", "w") as token:
@@ -31,24 +32,27 @@ def get_tasks():
     try:
         service = build("tasks", "v1", credentials=creds)
         results = service.tasklists().list(maxResults=10).execute()
-        tasklists = results.get('items', [])
+        tasklists = results.get("items", [])
 
         tasks_response = []
         if tasklists:
             for tasklist in tasklists:
-                tasks = service.tasks().list(tasklist=tasklist['id']).execute()
-                tasks_items = tasks.get('items', [])
+                tasks = service.tasks().list(tasklist=tasklist["id"]).execute()
+                tasks_items = tasks.get("items", [])
                 for task in tasks_items:
-                    tasks_response.append({
-                        'title': task['title'],
-                        'id': task['id'],
-                        'tasklist_id': tasklist['id'],
-                        'tasklist_title': tasklist['title']
-                    })
+                    tasks_response.append(
+                        {
+                            "title": task["title"],
+                            "id": task["id"],
+                            "tasklist_id": tasklist["id"],
+                            "tasklist_title": tasklist["title"],
+                        }
+                    )
 
         return jsonify(tasks_response)
     except HttpError as err:
-        return jsonify({'error': str(err)}), 500
+        return jsonify({"error": str(err)}), 500
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app.run(debug=True)

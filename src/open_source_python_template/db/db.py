@@ -11,7 +11,6 @@ class DBConfig:
 
 
 class Database:
-
     connection_pool = pool.ThreadedConnectionPool(
         1,
         20,
