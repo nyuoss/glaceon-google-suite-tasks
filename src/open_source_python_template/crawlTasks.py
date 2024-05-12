@@ -44,9 +44,11 @@ def get_tasks():
                         "id": task["id"],
                         "tasklist_id": tasklist["id"],
                         "tasklist_title": tasklist["title"],
-                        "taskdescription": task["notes"]
-                        if "notes" in task
-                        else "No description available",
+                        "taskdescription": (
+                            task["notes"]
+                            if "notes" in task
+                            else "No description available"
+                        ),
                     }
                 )
         return tasks_response
