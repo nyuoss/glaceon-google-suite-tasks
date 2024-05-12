@@ -170,3 +170,4 @@ cython_debug/
 
 # ignore config file
 # *db_config.py
+token.json

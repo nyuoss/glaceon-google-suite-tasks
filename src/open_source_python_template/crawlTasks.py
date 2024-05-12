@@ -18,7 +18,9 @@ def get_tasks():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file("credential.json", SCOPES)
+            flow = InstalledAppFlow.from_client_secrets_file(
+                "src/open_source_python_template/credential.json", SCOPES
+            )
             creds = flow.run_local_server(port=0)
             with open("token.json", "w") as token:
                 token.write(creds.to_json())
@@ -42,6 +44,9 @@ def get_tasks():
                         "id": task["id"],
                         "tasklist_id": tasklist["id"],
                         "tasklist_title": tasklist["title"],
+                        "taskdescription": task["notes"]
+                        if "notes" in task
+                        else "No description available",
                     }
                 )
         return tasks_response
