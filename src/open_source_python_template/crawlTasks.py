@@ -8,6 +8,7 @@ from googleapiclient.errors import HttpError
 # If modifying these scopes, delete the file token.json.
 SCOPES = ["https://www.googleapis.com/auth/tasks.readonly"]
 
+
 def get_tasks():
     """Function to get tasks from Google Tasks API and return them as JSON."""
     creds = None
