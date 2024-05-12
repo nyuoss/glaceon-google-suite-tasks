@@ -1,15 +1,38 @@
 # Google Suite Tasks Dashboard
+
+## Project's purpose
 The objective of the Google Suite Tasks Dashboard is to provide Google users with a centralized platform to efficiently manage tasks across the Google Task and Google Docs applications. By creating this solution, users can easily access and track their tasks in one location.
 
-## Development Setup
+## Features
+1. Extract tasks from Google Docs.
+2. View-only dashboard for user's tasks.
+3. Crawling tasks directly from Google Tasks API.
 
-### Project structure
-Entry point of the Flask application is `__init__.py`.
+## Installation instructions
+1. Clone the repository [glaceon-google-suite-tasks](https://github.com/nyuoss/glaceon-google-suite-tasks).
+2. Install PDM as package and dependency manager if it has not been installed.
 
-Frontend HTML templates can be found in `templates/` folder, such as `index.html`.
+    `pdm install --dev`
 
-Static elements and styles can be found in `static/` folder, such as `style.css`.
+3. Install dependencies:
 
+    `pdm install --dev`
+
+4. To update dependencies, run the following:
+
+    `pdm update`
+
+5. To connect AWS RDS through SSH, run the command with postgresql database installed 
+
+```bash
+psql -h opensource-db.chwy4eqkclzc.us-east-1.rds.amazonaws.com -p 5432 -U postgres -d task-db
+```
+
+6. To create the table in the database (please connect Fan(fy2187@nyu.edu) for database password )
+        
+    `create_databse.sql`
+
+## Usage instructions
 ### Running Flask app
 Change directory to `src/open_source_python_template` folder:
 
@@ -30,88 +53,34 @@ Open browser and go to the following host address:
 4. Run the script by clicking "Run".
 5. When the script finishes execution, the comments with tasks assigned to the current use will be stored in a newly created Google Sheet.
 
-# Open Source Python Template
+## Contribution Guidelines
 
-This is an advanced template for designing and developing Python projects with CI/CD. This template serves as a foundation and includes features for build management, unit testing, continuous integration, static analysis, code style adherence, and component specification.
+### Getting Started
+The below is an overview of how the project is structured. We recommend going through this section to have a basic understanding of where feature-related code files are located before making a contribution.
+#### Backend
+Entry point of the Flask application is `src/open_source_python_template/__init__.py`.
 
-The details of this template are listed below:
+Methods for crawling tasks from Google Sheet API is defined in `src/open_source_python_template/crawlTasks.py`.
 
-- The programming language: Python
+App Script for extracting tasks from Google Docs is `src/open_source_python_template/extractTasks.js`.
 
-- Testing Framework: Pytest
+#### Frontend
+Frontend HTML templates can be found in `templates/` folder, such as `index.html`.
 
-- Continuous Integration Solution: GitHub Actions, CircleCI
+Static elements, scripts, and styles can be found in `static/` folder, such as `style.css`.
 
-- Static Analysis Tools: Ruff, Flake8, MyPy
+### Making Contributions
+### Issues
+1. Create an Issue: Before you make significant changes or improvements, please check if an existing issue already addresses your concern. If not, submit a new issue providing as much relevant information as possible.
+2. Discuss: Participation in issue discussion is highly encouraged. Share your thoughts, suggestions, and ways to resolve issues.
 
-- Code Formatting Solution: Black
+### Pull Requests
+1. Create a Branch: Always create a new branch for your work. It should be named appropriately based on the nature of the change (e.g., feature-add-login, bugfix-address-crash).
+2. Make Your Changes: Perform your changes or additions in your branch, adhering to the coding standards and documentation style of the project.
+3. Write Tests: Ensure that your changes are covered by tests, which help in maintaining code quality and robustness.
+4. Document Your Changes: Update `README.md` with details of changes to the interface, this includes new dependencies, useful file locations, and connected components.
+5. Pull Request: Push your changes to your fork and submit a pull request (PR) to the original repository. It should describe the changes, reference the issues they affect, and note any specific areas where you would like feedback. Please use our PR template for documentation.
+6. Code Review: Wait for the project maintainers to review your PR. Be open to making changes based on feedback.
 
-- Package/Dependency Manager: PDM (Python Dependency Management)
-
-## Initial Setup
-
-Install PDM as package and dependency manager:
-
-    pip install pdm
-
-Install initial dependencies:
-
-    pdm install --dev
-
-To update dependencies, run the following:
-
-    pdm update
-
-## Using Features
-
-To use mypy, run the following:
-
-    pdm run mypy <filename>
-
-To use ruff, run the following:
-
-    pdm run ruff <filename>
-
-To use pytest, run the following:
-
-    pdm run pytest tests/test_addition.py
-
-To run the application, run the following:
-
-    pdm run src/main.py
-    
-## Component Path
-
-For now, we're focusing on two components: the test and the function itself.
-
-To develop or maintain features, navigate to the /src directory.
-
-    cd src
-
-To add or modify test component, navigate to the /tests directory.
-
-    cd tests
-
-## Continuous Integration with GitHub Actions
-This project is configured to use GitHub Actions for continuous integration. Every push to the repository triggers automated tests and checks to ensure code quality and functionality.
-
-To see the status of your build, navigate to the main page of the repository. Go to Actions, and in the left sidebar, click the workflow you want to display. From the list of workflow runs, click the name of the run you want to see. There, you can view the logs that shows you how each of the steps was processed.
-
-If you need to customize the build process, modify the `.github/workflows/github-actions.yml` file according to your needs. For detailed instructions, refer to the [GitHub Actions Documentation](https://docs.github.com/en/actions).
-
-## Continuous Integration with CircleCI
-
-As an alternative, this project is also configured to use CircleCI for continuous integration. 
-
-To see the status of your build, visit the CircleCI dashboard. There, you can view the progress and results of the build tests, static analysis, and more for your latest commits.
-
-If you need to customize the build process, modify the `.circleci/config.yml` file according to your needs. For detailed instructions, refer to the [CircleCI Configuration Reference](https://circleci.com/docs/2.0/configuration-reference/).
-
-## Contributors - Team Glaceon 
-
-- Yifei Zhuang
-- Fan Yang
-- Bowen Gong
-- Yanglin Tao
-- Winnie Zheng
-- Kaining Mao
+### Style Guides
+Please follow the coding style and conventions that are used in the project. We have setup a CI/CD pipeline to check for coding styles, please refrain from raising a PR if the formatter returns an error and make fixes accordingly to comply.
