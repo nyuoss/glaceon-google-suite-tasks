@@ -19,4 +19,4 @@ function search_task(id) {
             tasklists[i].style.display = "none";
         }
     }
-}ƒ
+}

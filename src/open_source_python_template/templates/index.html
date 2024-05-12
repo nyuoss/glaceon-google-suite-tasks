@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tasks Dashboard</title>
+    <script type = "text/javascript">
+        var tasks = {{tasks|tojson}};
+    </script>
+    <script type="text/javascript" src="../static/javascripts/script.js"></script>
 </head>
 <body>
     <div class="dashboard">
@@ -24,44 +28,27 @@
         <!-- Task column -->
         <div class="taskcolumn">
             <h2>Starred</h2>
-            
-            <!-- Task Item 1 -->
+
+            <ul id="tasklist"></ul>
+
+            {% for task in tasks %} 
             <div class="task-item">
                 <div class="task-info">
-                    <input type="checkbox" id="task1">
-                    <label for="task1">Task Item 1</label>
+                    <input type="checkbox">
+                    <span>{{task['title']}}</span>
                     <div class="task-meta">
-                        <span class="task-description">This is the task description.</span>
+                        <span class="task-description">From {{task['tasklist_title']}}</span>
                         <span class="due-date">Today</span>
                     </div>
                 </div>
-                <button class="dropdown-toggle" onclick="toggleDropdown('task-detail-1')">▼</button>
-                <div class="task-detail" id="task-detail-1">
-                    <p>More details about Task Item 1...</p>
+                <button class="dropdown-toggle" onclick="toggleDropdown('task-detail-{{task['id']}}')">▼</button>
+                <div class="task-detail" id="task-detail-{{task['id']}}">
+                    <p>More details about Task Item...</p>
                 </div>
             </div>
+            {% endfor %}
 
-            <!-- Task Item 2 -->
-            <div class="task-item">
-                <div class="task-info">
-                    <input type="checkbox" id="task2">
-                    <label for="task1">Task Item 2</label>
-                    <div class="task-meta">
-                        <span class="task-description">This is the task description.</span>
-                        <span class="due-date">Today</span>
-                    </div>
-                </div>
-                <button class="dropdown-toggle" onclick="toggleDropdown('task-detail-2')">▼</button>
-                <div class="task-detail" id="task-detail-2">
-                    <p>More details about Task Item 2...</p>
-                </div>
-            </div>
-
-            
-            <!-- Repeat for more tasks -->
         </div>
     </div> 
-
-    <script src="../static/javascripts/script.js" defer></script>
 </body>
 </html>

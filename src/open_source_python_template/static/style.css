@@ -145,6 +145,8 @@ ul {
 .task-description {
   color: #757575;
   font-size: 0.875rem;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .due-date {
