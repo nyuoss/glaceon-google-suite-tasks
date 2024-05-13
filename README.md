@@ -3,6 +3,9 @@
 ## Project's purpose
 The objective of the Google Suite Tasks Dashboard is to provide Google users with a centralized platform to efficiently manage tasks across the Google Task and Google Docs applications. By creating this solution, users can easily access and track their tasks in one location.
 
+Demo video:
+[![Demo video](https://img.youtube.com/vi/Dw0wTa5zSWM/0.jpg)](https://www.youtube.com/watch?v=Dw0wTa5zSWM)
+
 ## Features
 1. Extract tasks from Google Docs.
 2. View-only dashboard for user's tasks.
