@@ -1,13 +1,5 @@
-import pytest
-import os
-from src import *
 from src.open_source_python_template.crawlTasks import get_tasks
-from unittest.mock import patch, mock_open, MagicMock, PropertyMock
-from google.oauth2.credentials import Credentials
-from google.auth.transport.requests import Request
-from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
+from unittest.mock import patch, mock_open, MagicMock
 
 # Sample data for mocking responses
 MOCK_TASKS = {
@@ -77,10 +69,8 @@ def test_get_tasks_existing_token_expired():
 
         # Setup Google API client mock
         mock_service = mock_build.return_value
-        mock_tasklists = mock_service.tasklists().list().execute.return_value = (
-            MOCK_TASKLISTS
-        )
-        mock_tasks = mock_service.tasks().list().execute.return_value = MOCK_TASKS
+        mock_service.tasklists().list().execute.return_value = MOCK_TASKLISTS
+        mock_service.tasks().list().execute.return_value = MOCK_TASKS
 
         # Execute function
         results = get_tasks()
