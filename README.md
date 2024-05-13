@@ -4,18 +4,22 @@
 The objective of the Google Suite Tasks Dashboard is to provide Google users with a centralized platform to efficiently manage tasks across the Google Task and Google Docs applications. By creating this solution, users can easily access and track their tasks in one location.
 
 Demo video:
+
 [![Demo video](https://img.youtube.com/vi/Dw0wTa5zSWM/0.jpg)](https://www.youtube.com/watch?v=Dw0wTa5zSWM)
 
 ## Features
-1. Extract tasks from Google Docs.
-2. View-only dashboard for user's tasks.
-3. Crawling tasks directly from Google Tasks API.
+1. View-only dashboard for user's tasks.
+2. Crawling tasks directly from Google Tasks API.
+3. Extract tasks from Google Docs with App Scripts and store in Google Sheets.
+4. [Work In Progess] Store extracted tasks from Google Sheets into Postgresql (AWS RDS) database and display on dashboard.
 
 ## Installation instructions
+*Steps 5, 6 are not needed for components displayed in the demo.
+
 1. Clone the repository [glaceon-google-suite-tasks](https://github.com/nyuoss/glaceon-google-suite-tasks).
 2. Install PDM as package and dependency manager if it has not been installed.
 
-    `pdm install --dev`
+    `pip install pdm`
 
 3. Install dependencies:
 
@@ -31,7 +35,7 @@ Demo video:
 psql -h opensource-db.chwy4eqkclzc.us-east-1.rds.amazonaws.com -p 5432 -U postgres -d task-db
 ```
 
-6. To create the table in the database (please connect Fan(fy2187@nyu.edu) for database password )
+6. To create the table in the database (please connect Fan(fy2187@nyu.edu) for database password)
         
     `create_databse.sql`
 
@@ -45,7 +49,9 @@ Run Flask app via PDM:
 
     pdm run python __init__.py
 
-Open browser and go to the following host address:
+Open browser and authenticate with Google. Please contact Yifei Zhuang (@yz9865) for developer permission.
+
+Go to the following host address:
 
     http://127.0.0.1:5000
 
@@ -53,8 +59,9 @@ Open browser and go to the following host address:
 1. Open a Google Docs document, click on Extensions -> Apps Script. A new Apps Script will be created.
 2. From the left panel, select `Services` and add `Drive API`.
 3. Copy and paste the code in `extractTasks.js` into `Code.gs` file in the Apps Script editor.
-4. Run the script by clicking "Run".
-5. When the script finishes execution, the comments with tasks assigned to the current use will be stored in a newly created Google Sheet.
+4. Authenticate with Google account when prompted.
+5. Run the script by clicking "Run".
+6. When the script finishes execution, the comments with tasks assigned to the current use will be stored in a newly created Google Sheet.
 
 ## Contribution Guidelines
 
@@ -78,10 +85,14 @@ Before running frontend tests, ensure you have [Chrome Driver](https://chromedri
 
     pdm run pytest tests/test_index.py
 
+Notes: Since Seleium is not able to automate Google authentication, the CI/CD unit test with Pytest is expected to fail. 
+
 ### Backend tests [Work in Progress]
 Run the following command to run backend tests:
 
     pdm run pytest tests/test_crawl_tasks.py
+
+Notes: Issues might occur due to conflicts between template and Flask project project structures, especially with `__init__.py` files. More investigations needed to run mock test locally and pipelines.
 
 ### Making Contributions
 ### Issues
