@@ -9,7 +9,7 @@ from selenium.webdriver.chrome.options import Options
 @pytest.fixture(scope="class")
 def browser():
     # Setup Selenium
-    if os.getenv('CI'):  
+    if os.getenv("CI"):
         service = Service()
     else:
         service = Service(executable_path="/opt/homebrew/bin/chromedriver")
