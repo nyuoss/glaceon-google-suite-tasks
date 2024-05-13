@@ -1,4 +1,5 @@
 import pytest
+import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -8,7 +9,10 @@ from selenium.webdriver.chrome.options import Options
 @pytest.fixture(scope="class")
 def browser():
     # Setup Selenium
-    service = Service(executable_path="/opt/homebrew/bin/chromedriver")
+    if os.getenv('CI'):  
+        service = Service()
+    else:
+        service = Service(executable_path="/opt/homebrew/bin/chromedriver")
     options = Options()
     options.add_argument("--headless")
     driver = webdriver.Chrome(service=service, options=options)
