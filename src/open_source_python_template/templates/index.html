@@ -43,7 +43,7 @@
                 </div>
                 <button class="dropdown-toggle" onclick="toggleDropdown('task-detail-{{task['id']}}')">▼</button>
                 <div class="task-detail" id="task-detail-{{task['id']}}">
-                    <p>More details about Task Item...</p>
+                    <p>{{task['taskdescription']}}</p>
                 </div>
             </div>
             {% endfor %}
