@@ -32,6 +32,9 @@ jobs:
       run: |
         pdm install
 
+    - name: Setup Chrome and ChromeDriver
+      uses: nanasess/setup-chromedriver@v2
+
     - name: Check Code Formatting with Black
       run: |
         pdm run black --check src/ tests/

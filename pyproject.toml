@@ -11,6 +11,7 @@ dependencies = [
     "google-auth>=2.29.0",
     "google-auth-oauthlib>=1.2.0",
     "google-api-python-client>=2.127.0",
+    "selenium>=4.20.0",
 ]
 
 requires-python = ">=3.11"
@@ -31,6 +32,11 @@ dev = [
     "mypy>=1.8.0",
     "pytest>=8.0.0",
     "flake8>=7.0.0",
-    "black>=24.1.1",
+    "black>=24.4.2",
     "types-psycopg2>=2.9.21.20240417",
+]
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src"
 ]

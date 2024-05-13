@@ -69,6 +69,17 @@ Frontend HTML templates can be found in `templates/` folder, such as `index.html
 
 Static elements, scripts, and styles can be found in `static/` folder, such as `style.css`.
 
+### Testing
+#### Frontend tests
+Before running frontend tests, ensure you have [Chrome Driver](https://chromedriver.chromium.org/downloads) installed and updated to latest version. Then run the following command:
+
+    pdm run pytest tests/test_index.py
+
+### Backend tests [Work in Progress]
+Run the following command to run backend tests:
+
+    pdm run pytest tests/test_crawl_tasks.py
+
 ### Making Contributions
 ### Issues
 1. Create an Issue: Before you make significant changes or improvements, please check if an existing issue already addresses your concern. If not, submit a new issue providing as much relevant information as possible.

@@ -1,21 +1,21 @@
 // Extracts comments that contains tasks assigned to the current user
 function extractCommentsWithAssignedTasks() {
   // Gets the current document
-  var doc = DocumentApp.getActiveDocument();
-  var docId = doc.getId();
-  var docUrl = doc.getUrl();
+  const doc = DocumentApp.getActiveDocument();
+  const docId = doc.getId();
+  const docUrl = doc.getUrl();
 
   // Gets current user's email
-  var userEmail = Session.getActiveUser().getEmail();
+  const userEmail = Session.getActiveUser().getEmail();
 
   // Gets all comments within the current document
-  var comments = Drive.Comments.list(docId, {
+  const comments = Drive.Comments.list(docId, {
     'fields': 'comments(author(displayName),content,quotedFileContent,createdTime)'
   });
   
   var commentsWithAssignedTasks = [];
 
-  var userTag = '@' + userEmail;
+  const userTag = '@' + userEmail;
 
   if (comments.comments && comments.comments.length > 0) {
     comments.comments.forEach(function(comment) {
