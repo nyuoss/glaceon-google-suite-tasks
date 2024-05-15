@@ -1,5 +1,5 @@
 import src.open_source_python_template.crawlTasks as crawlTasks
-from unittest.mock import patch, mock_open, MagicMock
+from unittest.mock import patch, MagicMock
 
 # Sample data for mocking responses
 MOCK_TASKS = {
