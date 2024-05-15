@@ -1,4 +1,4 @@
-from src.open_source_python_template.crawlTasks import get_tasks
+import src.open_source_python_template.crawlTasks as crawlTasks
 from unittest.mock import patch, mock_open, MagicMock
 
 # Sample data for mocking responses
@@ -24,19 +24,13 @@ def test_get_tasks_existing_token_valid():
         ) as mock_cred,
         patch("googleapiclient.discovery.build") as mock_build,
     ):
-        mock_cred.return_value.valid = True
-        mock_cred.return_value.universe_domain = "googleapis.com"
-
+        mock_cred.return_value = MagicMock(valid=True, universe_domain="googleapis.com")
         mock_service = MagicMock()
-        mock_build.return_value = mock_service
-        mock_cred.return_value.valid = True
-
-        mock_service = MagicMock()
-        mock_build.return_value = mock_service
         mock_service.tasklists().list().execute.return_value = MOCK_TASKLISTS
         mock_service.tasks().list().execute.return_value = MOCK_TASKS
+        mock_build.return_value = mock_service
 
-        results = get_tasks()
+        results = crawlTasks.get_tasks()
 
         assert len(results) == 1
         assert results[0]["title"] == "Task 1"
@@ -50,22 +44,22 @@ def test_get_tasks_existing_token_expired():
         ) as mock_cred,
         patch("google.auth.transport.requests.Request"),
         patch("googleapiclient.discovery.build") as mock_build,
-        patch("builtins.open", mock_open()),
+        patch("builtins.open", MagicMock()),
     ):
-        mock_cred.return_value.valid = False
-        mock_cred.return_value.expired = True
-        mock_cred.return_value.refresh_token = True
+        mock_cred.return_value = MagicMock(
+            valid=False,
+            expired=True,
+            refresh_token=True,
+            universe_domain="googleapis.com",
+        )
+        mock_cred.return_value.refresh = MagicMock()
 
-        def refresh(request):
-            mock_cred.return_value.valid = True
-
-        mock_cred.return_value.refresh = refresh
-
-        mock_service = mock_build.return_value
+        mock_service = MagicMock()
         mock_service.tasklists().list().execute.return_value = MOCK_TASKLISTS
         mock_service.tasks().list().execute.return_value = MOCK_TASKS
+        mock_build.return_value = mock_service
 
-        results = get_tasks()
+        results = crawlTasks.get_tasks()
 
         assert len(results) == 1
         assert results[0]["title"] == "Task 1"
@@ -79,11 +73,11 @@ def test_get_tasks_no_tasklists():
         ) as mock_cred,
         patch("googleapiclient.discovery.build") as mock_build,
     ):
-        mock_cred.return_value.valid = True
-
-        mock_service = mock_build.return_value
+        mock_cred.return_value = MagicMock(valid=True, universe_domain="googleapis.com")
+        mock_service = MagicMock()
         mock_service.tasklists().list().execute.return_value = {"items": []}
+        mock_build.return_value = mock_service
 
-        results = get_tasks()
+        results = crawlTasks.get_tasks()
 
         assert results == []

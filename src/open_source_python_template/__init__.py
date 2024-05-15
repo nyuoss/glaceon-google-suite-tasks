@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-import crawlTasks
+import open_source_python_template.crawlTasks as crawlTasks
 
 app = Flask(__name__)
 
